@@ -1,4 +1,4 @@
-# go-logrus-formatters
+# go-logrus-formatters [![Build Status](https://travis-ci.org/FabienM/go-logrus-formatters.svg?branch=master)](https://travis-ci.org/FabienM/go-logrus-formatters)
 
 This project is a set of [logrus] formatters.
 
