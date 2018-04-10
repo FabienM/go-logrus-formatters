@@ -3,6 +3,7 @@ package formatters
 import (
 	"encoding/json"
 	"log/syslog"
+	"runtime"
 	"time"
 
 	"github.com/sirupsen/logrus"
@@ -71,6 +72,10 @@ func (f gelfFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 		"timestamp":     toTimestamp(entry.Time),
 		"host":          f.hostname,
 		"_level_name":   syslogNameMap[level],
+	}
+	if _, file, line, ok := runtime.Caller(5); ok {
+		gelfEntry["_file"] = file
+		gelfEntry["_line"] = line
 	}
 	for key, value := range entry.Data {
 		if !protectedFields[key] {
