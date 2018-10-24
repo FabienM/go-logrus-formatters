@@ -1,13 +1,19 @@
 # go-logrus-formatters [![Build Status](https://travis-ci.org/FabienM/go-logrus-formatters.svg?branch=master)](https://travis-ci.org/FabienM/go-logrus-formatters)
 
-This project is a set of [logrus] formatters.
+This repository contains a set of [logrus] formatters.
 
 ## Installation
 
-Preferred way of installation is through [dep]:
+Since this project supports [semver], preferred way of installation is through [dep] or [gomodules]:
 
 ```
-dep ensure -add github.com/fabienm/go-logrus-formatter
+dep ensure -add github.com/fabienm/go-logrus-formatters
+```
+
+or
+
+```
+go get github.com/fabienm/go-logrus-formatters
 ```
 
 ## GELF formatter
@@ -78,5 +84,7 @@ Output:
 * https://github.com/xild/go-gelf-formatter
 
 [dep]: https://golang.github.io/dep/
-[logrus]: https://raw.githubusercontent.com/sirupsen
+[gomodules]: https://github.com/golang/go/wiki/Modules
+[semver]: https://semver.org/
+[logrus]: https://github.com/sirupsen/logrus
 [GELF]: http://docs.graylog.org/en/2.4/pages/gelf.html
