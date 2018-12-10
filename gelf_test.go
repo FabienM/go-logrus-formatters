@@ -14,21 +14,22 @@ func TestGelfFormatter_Format(t *testing.T) {
 	log.Formatter = NewGelf("testhost")
 	buffer := new(bytes.Buffer)
 	log.Out = buffer
-	log.WithField("foo","bar").Info("great test message")
+	log.WithField("foo", "bar").Info("great test message")
 
 	var message map[string]interface{}
-	err:= json.Unmarshal(buffer.Bytes(), &message)
+	err := json.Unmarshal(buffer.Bytes(), &message)
 	if err != nil {
 		t.Error(err)
 	}
 
-	expectations:= map[string]interface{}{
-		"_level_name": "INFORMATIONAL",
-		"_foo": "bar",
-		"host": "testhost",
-		"level": float64(syslog.LOG_INFO),
+	expectations := map[string]interface{}{
+		"host":          "testhost",
+		"level":         float64(syslog.LOG_INFO),
 		"short_message": "great test message",
-		"version": GelfVersion,
+		"version":       GelfVersion,
+		"_level_name":   "INFORMATIONAL",
+		"_foo":          "bar",
+		"_line":         17.,
 	}
 	for key, expected := range expectations {
 		if message[key] != expected {
